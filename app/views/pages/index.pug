@@ -1,0 +1,92 @@
+extends  ../layout
+
+block content
+    link(rel='stylesheet',href='/css/index.css')
+    if(promptToActivateAccount)
+        .alert.alert-success.alert-dismissible.fade.in(role='alert') 邮件已成功发送,请前往激活！链接会在三天后过期!
+            button.close(data-dismiss='alert')
+                span &times;
+    .container
+        .row
+            .gallery.col-md-12
+                input#img-1.radio(name='radio',checked,type='radio')
+                .gallery-item
+                    label.prev.fa.fa-angle-left(for="img-3")
+                    label.next.fa.fa-angle-right(for="img-2")
+                    img.img(src='/images/galleryImages/0.jpg')
+
+                input#img-2.radio(name='radio',type='radio')
+                .gallery-item
+                    label.prev.fa.fa-angle-left(for="img-1")
+                    label.next.fa.fa-angle-right(for="img-3")
+                    img.img(src='/images/galleryImages/1.jpg')
+
+                input#img-3.radio(name='radio',type='radio')
+                .gallery-item
+                    label.prev.fa.fa-angle-left(for="img-2")
+                    label.next.fa.fa-angle-right(for="img-1")
+                    img.img(src='/images/galleryImages/2.jpg')
+        .row.filter
+            .col-md-1.col-sm-1.filter-title.text-center 所有
+            .col-md-1.col-sm-1.filter-group.time.text-center 年代
+                .container
+                    .filter-options.row
+                        .col-md-3.col-sm-3.text-center.filter-option.filter-selected 所有
+                        -for(var i=2016;i>2002;i--)
+                            .col-md-3.col-sm-3.text-center.filter-option #{i}
+                        .col-md-3.col-sm-3.text-center.filter-option 更早
+            .col-md-1.col-sm-1.filter-group.country.text-center 国家
+                -var countries=['中国','美国','韩国','日本','德国','法国','英国','泰国','印度','意大利','其他'];
+                .container
+                    .filter-options.row
+                        .col-md-3.col-sm-3.text-center.filter-option.filter-selected 所有
+                        -for(var i=0;i<11;i++)
+                            .col-md-3.col-sm-3.text-center.filter-option #{countries[i]}
+            .col-md-1.col-sm-1.filter-group.type.text-center 类型
+                -var categories=['动作','喜剧','爱情','科幻','恐怖','惊悚','灾难','悬疑','奇幻','战争','犯罪','历史','自然','武侠','剧情','家庭'];
+                .container
+                    .filter-options.row
+                        .col-md-3.col-sm-3.text-center.filter-option.filter-selected 所有
+                        -for(var i=0;i<16;i++)
+                            .col-md-3.col-sm-3.text-center.filter-option #{categories[i]}
+            .col-md-offset-5.col-sm-offset-5.col-md-3.col-sm-3.search
+                input#search.form-control.fa.fa-search(type='text',placeholder='搜索')
+                .searchIcon.fa.fa-search
+
+
+        .row.index-thumbnail
+            if(movies.length==0)
+                .jumbotron
+                    .lead 抱歉,没有任何结果
+            else
+                each item in movies
+                    .col-md-3.col-sm-3.col-xs-6
+                        .thumbnail
+                            a(href="/movie/"+item._id,target='_blank')
+                                img(src=item.poster,alt=item.title,style='height:160px')
+                            .caption
+                                h4(title=item.title.replace(/\s/g,'')) #{item.title.replace(/\s/g,'')}
+                                p
+                                    a.btn.btn-primary.btn-sm(href="/movie/"+ item._id ,role="button",target='_blank') 观看电影
+                                    a.fa.fa-heart 添加收藏
+        .row
+            -var pages=movies.length/3>1?Math.ceil(movies.length/3):1
+            if(pages!==1)
+                nav.pagination-container
+                    ul.pagination
+                        li.page-item
+                            a.page-link &laquo;
+                        if(pages > 3)
+                            -for(let i=1;i<4;i++)
+                                li.page-item
+                                    a.page-link #{i}
+                        else
+                            -for(let i=1;i<=pages;i++)
+                                li.page-item
+                                    a.page-link #{i}
+                        li.page-item
+                            a.page-link &raquo;
+
+
+        script(src='/js/index.js')
+

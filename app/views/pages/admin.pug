@@ -1,0 +1,108 @@
+extends  ../layout
+
+block content
+    link(href='/css/addMovie.css',rel='stylesheet')
+    .switch-group
+        .switch.info.selected 详细信息
+        .switch.douban 豆瓣同步
+    .container#explicit-info
+        .row
+            form.form-horizontal(enctype="multipart/form-data")
+                .form-group
+                    label.col-sm-2.control-label 海报
+                    .col-sm-3#showPoster
+                    .col-sm-2
+                        label.btn.btn-success(data-toggle='tooltip',data-placement='top',title='只支持png和jpg格式',for='uploadPoster') 上传图片
+                    input#uploadPoster(type='file',style='display:none',name="poster",required)
+
+            form.form-horizontal(method="POST",action = "/admin/movie/new")
+
+                .form-group
+                    label.col-sm-2.control-label(for="inputTitle") 电影名字
+                    .col-sm-8
+                        input#inputTitle.form-control.willCheck(type="text",name="movie[title]",required)
+                    .col-sm-2#errorTitle.text-center 该电影已存在
+                .form-group
+                    label.col-sm-2.control-label(for="inputDirector") 导演
+                    .col-sm-8
+                        input#inputDirector.form-control(type="text",name="movie[director]",required)
+                .form-group
+                    label.col-sm-2.control-label(for="inputAddress") 片源地址
+                    .col-sm-8
+                        input#inputAddress.form-control(type="text",name="movie[address]",required,placeholder='暂时未上映或者无片源请填写soon')
+
+
+                .form-group
+                    label.col-sm-2.control-label 年代
+                    .col-sm-8
+                        select.form-control(type='select',name='movie[year]')
+                            option(value='更早') 更早
+                            -for(var i=2003;i<2017;i++)
+                                option(value=i) #{i}
+                .form-group
+                    -var countries=['中国','美国','韩国','日本','德国','法国','英国','泰国','印度','意大利','其他'];
+                    label.col-sm-2.control-label 国家
+                    .col-sm-8
+                        select.form-control(type='select',name='movie[country]')
+
+                            -for(var i=0;i<11;i++)
+                                option(value=countries[i]) #{countries[i]}
+                .form-group
+                    label.col-sm-2.control-label 类型
+                    .col-sm-8
+                        .container(style='width:100%')
+                            .row
+                                -var categories=['动作','喜剧','爱情','科幻','恐怖','惊悚','灾难','悬疑','奇幻','战争','犯罪','历史','自然','武侠','剧情','家庭'];
+                                -for(var i=0;i<16;i++)
+                                    .col-sm-2
+                                        label.category-label.control-label(for=i) #{categories[i]}
+                                        input(type='checkbox',value=categories[i],name='movie[category]',id=i)
+                .form-group
+                    label.col-sm-2.control-label(for="inputSummary") 电影简介
+                    .col-sm-8
+                        textarea#inputSummary.form-control(type="text",name="movie[summary]",required,rows='5')
+                .form-group
+                    .col-sm-offset-2.col-sm-10
+                        button.btn.btn-primary(type="sumbit") 录入
+
+    .container#douban-info(style='display:none')
+        .row
+            form.form-horizontal
+                .form-group
+                    label.col-sm-2.control-label(for='doubanId') 豆瓣id
+                    .col-sm-8
+                        input#doubanId.form-control(type='number',name='movie[douban]',required)
+                    .col-sm-2#errorDouban.text-center 该id已存在或者输入格式不正确
+                .form-group
+                    label.col-sm-2.control-label(for='doubanId') 播放地址
+                    .col-sm-8
+                        input.form-control(type='text',name='movie[address]',required,placeholder='暂时未上映或者无片源请填写soon')
+                .form-group
+                    -var countries=['中国','美国','韩国','日本','德国','法国','英国','泰国','印度','意大利','其他'];
+                    label.col-sm-2.control-label 国家
+                    .col-sm-8
+                        select.form-control(name='movie[country]')
+                            -for(var i=0;i<11;i++)
+                                option(value=countries[i]) #{countries[i]}
+                .form-group
+                    label.col-sm-2.control-label 类型
+                    .col-sm-8
+                        .container(style='width:100%')
+                            .row
+                                -var categories=['动作','喜剧','爱情','科幻','恐怖','惊悚','灾难','悬疑','奇幻','战争','犯罪','历史','自然','武侠','剧情','家庭'];
+                                -for(var i=0;i<16;i++)
+                                    .col-sm-2
+                                        label.category-label.control-label(for=i) #{categories[i]}
+                                        input(type='checkbox',value=categories[i],name='movie[category]',id=i)
+                .form-group
+                    .col-sm-offset-2.col-sm-10
+                        button.btn.btn-primary 录入
+
+
+    script(src='/js/addMovie.js')
+
+
+
+
+
+

@@ -1,0 +1,68 @@
+extends ../layout
+block content
+
+    link(rel='stylesheet',href='/css/userSpace.css')
+    .container.body
+        .row
+            .userSpace-header
+
+                .userSpace-userHead(style=`background-image:url(${userSpace.headpath})`)
+                    span #{userSpace.name}
+                .userSpace-nav
+                    a
+                        i.fa.fa-heart
+                        span 收藏
+                        .line
+                    if(masterView)
+                        a
+                            i.fa.fa-user
+                            span 资料
+        .row.movie
+            h3 视频收藏
+            if(movies.length==0)
+                .jumbotron
+                    .lead #{masterView?'您':'他'}还没有收藏哦
+            else
+                each item in movies
+                    .col-md-3(onclick=`location.href="/movie/${item._id}"`)
+                        .thumbnail
+                            a
+                                img(src=item.poster,alt=item.title,width='100%')
+                            .caption
+                                h4(title=item.title.replace(/\s/g,'')) #{item.title.replace(/\s/g,'')}
+                                if(masterView)
+                                    span.delete ×
+
+        .row.info
+            h3 个人资料
+            .postPic.col-md-11.col-md-offset-1
+                .col-md-2.text-right 上传头像:
+                .col-md-3
+                    span.preview(style=`background-image:url(${userSpace.headpath})`)
+                .col-md-2
+                    form(name='postPic',method='POST',action='javascript:void(0)',encype = "multipart/form-data")
+                        label#post(for='postInput',data-toggle='tooltip',data-placement='top',title='只支持png和jpg格式')  上传头像
+                        input#postInput(type='file',style={display:'none'},name='postPic')
+            .btn.btn-success.col-md-offset-3 保存
+
+
+
+        #deleteModal.modal.fade
+            .modal-dialog
+                .modal-content
+                    .modal-header
+                        h4 删除确认
+                    .modal-body
+                        h4 您确认要删除选中的视频吗
+                    .modal-footer
+                        button.btn.btn-default(data-dismiss='modal') 确认
+                        button.btn.btn-primary(data-dismiss='modal') 取消
+
+
+    script(src='/js/userSpace.js')
+
+
+
+
+
+

@@ -1,0 +1,119 @@
+extends  ../layout
+
+block content
+    link(rel='stylesheet',href='/css/detail.css')
+    .container
+        .row
+                if(movie.address=='soon')
+                    .col-md-7.col-sm-7
+                        div(style='line-height:600px;text-align:center;background:#ddd;') 暂未上映或无片源
+                else
+                    .col-md-7.col-sm-7
+                        embed(src=movie.address,allowFullScreen="true",quality="high",width="720",height="600",align="middle",type="application/x-shockwave-flash")
+                .col-md-5.col-sm-5
+                    dl.dl-horizontal
+                        dt 电影名称
+                        dd #{movie.title.replace(/\s/g,'')}
+                        dt 导演
+                        dd #{movie.director}
+                        dt 国家
+                        dd #{movie.country}
+                        dt 类型
+                        dd #{movie.category}
+                        dt 上映年份
+                        dd #{movie.year}
+                        dt 简介
+                        dd #{movie.summary}
+    .container(style='margin-top:20px')
+        .row
+            .col-md-7.col-sm-7
+
+                if(user)
+                    form.form-horizontal
+                        input(type='hidden',name='comment[movieId]',value=movie._id)
+                        input(type='hidden',name='comment[from]',value=user._id)
+                        .form-group
+                            label.control-label(for='commentContent') #{user.name}:
+                            textarea#commentContent.form-control(style='height:80px',name='comment[content]')
+                        .form-group
+                            p.pull-right
+                                    button.btn.btn-primary.submitComment 提交评论
+                else
+                    h4 请先登录再发表评论
+        hr
+
+        .row.sample
+            .col-md-7
+                a.userCommentHead
+                .card
+                    h5.card-title
+                        a admin
+                    p.card-text Nice!
+                    .card-block
+                        span.commentDate 2017-8-19
+                        a.like.fa.fa-thumbs-up 赞(0)
+                        span.commentId
+                        a.comment.fa.fa-comment 添加评论
+                    i.fa.fa-angle-up
+                    .subComments
+                        form.subComment.form
+                            .form-group
+                                input.form-control(type='text',placeholder='说点什么吧。。。',max-length=50)
+                            .form-group
+                                button.subComment-cancel 取消
+                                button.subComment-submit.btn.btn-primary 评论
+
+                hr
+
+        .card.subComment-sample
+            a.userCommentHead
+            h5.card-title
+                a
+            p.card-text
+            .card-block
+                span.commentDate
+                a.like.fa.fa-thumbs-up 赞(0)
+                span.commentId
+
+
+        each comment in comments
+            .row
+                .col-md-7
+                    a.userCommentHead(style=`background-image:url(${comment.from.headpath})`,href=`/user/${comment.from._id}`,target='_blank')
+                    .card
+                        h5.card-title
+                            a(href=`/user/${comment.from._id}`,target='_blank') #{comment.from.name}
+                        p.card-text #{comment.content}
+                        .card-block
+                            span.commentDate #{moment(comment.createAt.toString()).format('YYYY-MM-DD HH:mm:ss')}
+                            if(comment.commented)
+                                a.like.fa.fa-thumbs-up 取消赞(#{comment.likes})
+                            else
+                                a.like.fa.fa-thumbs-up 赞(#{comment.likes})
+                            span.commentId #{comment._id}
+                            if(comment.comments)
+                                a.comment.fa.fa-comment 评论(#{comment.comments})
+                            else
+                                a.comment.fa.fa-comment 添加评论
+
+                        i.fa.fa-angle-up
+                        .subComments
+                            form.subComment.form
+                                .form-group
+                                    input.form-control(type='text',placeholder='说点什么吧。。。',max-length=50)
+                                .form-group
+                                    button.subComment-cancel 取消
+                                    button.subComment-submit.btn.btn-primary 评论
+                    hr
+
+
+    script(src='/js/Comment.js')
+
+
+
+
+
+
+
+
+
