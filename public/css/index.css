@@ -1,0 +1,215 @@
+
+
+
+
+
+
+/*轮播图*/
+.radio{
+    display: none;
+}
+
+.gallery{
+    height:400px;
+    overflow: hidden;
+    margin-bottom:20px;
+    padding-left:0;
+    padding-right:0;
+}
+
+.gallery-item{
+    height:400px;
+    position:absolute;
+    transition: .8s;
+    transform:scale(0);
+    opacity:0;
+    z-index:0;
+    overflow: hidden;
+}
+
+.gallery-item label{
+    display: inline-block;
+    width: 40px;
+    line-height:80px;
+    color:rgba(255,255,255,.5);
+    font-size:80px;
+    position:absolute;
+    opacity:0;
+    text-align: center;
+}
+
+.prev{
+    left:0;
+    top:50%;
+    margin-top:-40px;
+    margin-left:60px;
+}
+
+.next{
+    right:0;
+    top:50%;
+    margin-top:-40px;
+    margin-right: 60px;
+}
+
+.img{
+    width:100%;
+}
+
+
+.gallery-item:hover label{
+    opacity:.5;
+}
+
+.prev:hover,.next:hover{
+    opacity:1 !important;
+    cursor:pointer;
+}
+
+.radio:checked +div{
+    transform:scale(1) ;
+    z-index:1;
+    opacity:1 ;
+    transition:opacity 1s ;
+}
+
+.page-header{
+    margin-top:20px;
+}
+
+
+/*筛选*/
+.filter{
+    background-color: #f8f8f8;
+    line-height:50px;
+    font-size: 16px;
+    border-radius: 3px;
+}
+
+.filter-title{
+    color:#337ab7;
+}
+
+.filter-title:hover{
+    cursor: pointer;
+}
+
+.filter-group{
+    position:relative;
+}
+
+.filter-group:hover{
+    cursor: pointer;
+    color: #43d5cd;
+}
+
+.filter-group:hover .container{
+    transform:scale(1);
+    opacity:1;
+}
+
+.filter-group  .container{
+    position: absolute;
+    width: 300%;
+    z-index:2;
+    top:100%;
+    left:-100%;
+    margin-top:-9px;
+    overflow: hidden;
+    line-height: 30px;
+    background-color: #fff;
+    box-shadow: 0 0 1px 1px #dadada;
+    border-radius: 3px;
+    color:#333;
+    -webkit-transition: .3s ease-in;
+    -moz-transition: .3s ease-in;
+    -ms-transition: .3s ease-in;
+    -o-transition: .3s ease-in;
+    transition: .3s ease-in;
+    transform-origin: 50% 0;
+    transform:scale(0);
+    opacity:0;
+}
+
+.filter-option{
+    font-size:14px;
+}
+
+.filter-option:hover{
+    background-color:  #43d5cd;
+    color:#fff;
+
+}
+
+.filter-selected{
+    background-color:  #43d5cd;
+    color:#fff;
+}
+
+
+.search{
+position: relative;
+}
+
+.searchIcon{
+    position: absolute;
+    width: 20px;
+    font-size: 18px;
+    top:.8em;
+    right:25px;
+    color:#ddd;
+}
+
+.searchIcon:hover{
+    color:#43d5cd;
+    cursor: pointer;
+}
+
+
+#search{
+    padding-right: 40px;
+}
+
+/*电影展示*/
+
+.index-thumbnail .col-md-3[style='display:block']:nth-child(4n+1){
+    padding-left:0!important;
+}
+
+.index-thumbnail .col-md-3[style='display:block']:nth-child(4n){
+    padding-right:0!important;
+}
+
+.index-thumbnail .col-md-3{
+    padding-left:10px;
+    padding-right:10px;
+}
+
+.index-thumbnail h4{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.index-thumbnail{
+    margin-top:20px;
+}
+
+.fa-heart{
+    margin-left:40%;
+    color: #717171;
+}
+
+.fa-heart:hover{
+    color: #ff574b;
+    text-decoration:none;
+    cursor: pointer;
+}
+
+.pagination-container{
+    text-align: center;
+}
+
+.page-link:hover{
+    cursor: pointer;
+}

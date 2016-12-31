@@ -1,0 +1,81 @@
+.like,.comment{
+    padding-left:10px;
+}
+
+.like:hover,.comment:hover{
+    cursor:pointer;
+}
+
+.col-md-7>.card{
+    margin-left:100px;
+}
+
+.userCommentHead{
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+    background-position: center;
+    float:left;
+    border-radius: 50%;
+    margin-top: 1.5em;
+    margin-left:30px;
+}
+
+.userCommentHead:hover{
+    cursor: pointer;
+}
+
+.card-title{
+    cursor: pointer;
+}
+
+.commentDate{
+    opacity:.5;
+}
+
+
+.form .form-control{
+    margin-top:20px;
+}
+
+.form .form-group{
+    width: 80%;
+    text-align: right;
+}
+
+.subComment-cancel{
+    background: none;
+    border:none
+}
+
+.subComment-cancel:hover{
+    opacity:.8
+}
+
+.fa-angle-up{
+    color:rgb(221,221,221);
+    margin-left: 230px;
+    font-size: 20px;
+    border-bottom: transparent;
+}
+
+.subComments,.sample,.subComment-sample,.commentId{
+    display: none;
+}
+
+.subComments{
+    margin-top:-6px;
+}
+
+
+.fa-angle-up{
+    display: none;
+}
+
+.subComment .userCommentHead{
+    margin-right: 30px;
+    margin-top: 1em;
+}
+
+
+

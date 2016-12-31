@@ -1,0 +1,65 @@
+
+.switch-group{
+    position: fixed;
+    right:5%;
+}
+
+.switch{
+    width: 80px;
+    height:80px;
+    line-height: 80px;
+    text-align: center;
+    border-radius: 50%;
+    border:1px #ddd solid;
+    margin-top:20px;
+}
+
+.switch:hover{
+    background-color: #74d4ff;
+    color:#fff;
+    cursor: pointer;
+    border: none;
+}
+
+.selected{
+    background-color: #74d4ff;
+    color:#fff;
+    cursor: pointer;
+    border: none;
+}
+
+
+#showPoster{
+    height:200px;
+    background-image:url(/images/userHeads/default.jpg);
+    background-position: center;
+    background-size: cover;
+    padding-left: 0;
+    margin-left: 15px;
+    padding-right: 0;
+    margin-right: 15px;
+}
+
+#showPoster+div{
+    height:200px;
+    position: relative;
+}
+
+#showPoster+div .btn-success{
+    border-radius: 0;
+    position: absolute;
+    bottom:0;
+}
+
+.btn-primary{
+    width: 100px;
+    line-height: 25px;
+    margin-top: 20px;
+}
+
+ /*豆瓣同步*/
+
+#errorDouban,#errorTitle{
+    color:red;
+    display: none;
+}
