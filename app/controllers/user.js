@@ -81,13 +81,13 @@ exports.signup=function (req, res) {
                 var transporter=nodemailer.createTransport({
                     service:'QQ',
                     auth:{
-                        user:'1275917839@qq.com', //你的邮箱地址
-                        pass:'lsmbalavaipebada'  //你的授权码
+                        user:, //你的邮箱地址
+                        pass:  //你的授权码
                     }
                 });
                 var link=`http://localhost:3000/user/activateAccount/${result._id}`;
                 var mailOptions={
-                    from:'1275917839@qq.com',  //你的邮箱地址
+                    from:,  //你的邮箱地址
                     to:req.body.user.email,
                     secure:true,
                     subject:'激活账户',
